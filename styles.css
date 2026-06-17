@@ -481,6 +481,16 @@ h2 {
   background: var(--paper);
 }
 
+.contact .section-heading {
+  margin-bottom: clamp(18px, 3vw, 30px);
+}
+
+.contact h2 {
+  max-width: 980px;
+  font-size: clamp(2.1rem, 4.2vw, 4rem);
+  line-height: 0.98;
+}
+
 .contact-actions {
   max-width: 1240px;
   margin: 0 auto;
