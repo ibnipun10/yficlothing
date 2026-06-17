@@ -99,14 +99,78 @@ a {
 }
 
 .hero {
+  position: relative;
   display: flex;
   align-items: center;
   min-height: calc(100svh - 72px);
   border-bottom: 1px solid var(--line);
+  overflow: hidden;
+  background: var(--paper);
+  isolation: isolate;
+}
+
+.hero::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255, 250, 245, 0.96) 0%,
+      rgba(255, 250, 245, 0.92) 38%,
+      rgba(255, 250, 245, 0.58) 58%,
+      rgba(255, 250, 245, 0.18) 100%
+    );
+  content: "";
 }
 
 .hero-copy {
+  position: relative;
+  z-index: 1;
   max-width: 900px;
+}
+
+.hero-motion {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  overflow: hidden;
+}
+
+.hero-lookbook {
+  position: absolute;
+  top: -5%;
+  right: -7%;
+  bottom: -5%;
+  display: flex;
+  gap: clamp(12px, 1.5vw, 22px);
+  width: min(78vw, 1180px);
+  transform: translateX(2%) scale(1.03);
+  animation: heroLookbookDrift 18s ease-in-out infinite alternate;
+}
+
+.hero-lookbook img {
+  flex: 1 1 0;
+  min-width: 0;
+  height: 100%;
+  object-fit: cover;
+  box-shadow: 0 24px 70px rgba(23, 21, 20, 0.18);
+}
+
+@keyframes heroLookbookDrift {
+  from {
+    transform: translateX(2%) scale(1.03);
+  }
+
+  to {
+    transform: translateX(-7%) scale(1.07);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-lookbook {
+    animation: none;
+  }
 }
 
 .eyebrow,
@@ -540,6 +604,16 @@ h2 {
 
   h1 {
     font-size: clamp(3.55rem, 20vw, 5.8rem);
+  }
+
+  .hero::before {
+    background: rgba(255, 250, 245, 0.84);
+  }
+
+  .hero-lookbook {
+    right: -42%;
+    width: 150vw;
+    opacity: 0.62;
   }
 
   .hero-actions,
