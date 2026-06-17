@@ -116,10 +116,10 @@ a {
   background:
     linear-gradient(
       90deg,
-      rgba(255, 250, 245, 0.98) 0%,
-      rgba(255, 250, 245, 0.94) 42%,
-      rgba(255, 250, 245, 0.66) 64%,
-      rgba(255, 250, 245, 0.16) 100%
+      rgba(255, 250, 245, 0.96) 0%,
+      rgba(255, 250, 245, 0.92) 38%,
+      rgba(255, 250, 245, 0.58) 58%,
+      rgba(255, 250, 245, 0.18) 100%
     );
   content: "";
 }
@@ -137,64 +137,39 @@ a {
   overflow: hidden;
 }
 
-.hero-slide {
+.hero-lookbook {
   position: absolute;
-  top: 50%;
-  right: clamp(24px, 6vw, 92px);
-  width: min(36vw, 440px);
-  height: min(72vh, 640px);
-  min-height: 460px;
-  overflow: hidden;
-  border: 1px solid rgba(23, 21, 20, 0.18);
-  background: var(--white);
-  box-shadow: 0 30px 86px rgba(23, 21, 20, 0.2);
-  opacity: 0;
-  transform: translateY(-50%) translateX(24px) scale(0.98);
-  animation: heroSlideShow 18s ease-in-out infinite;
+  top: -5%;
+  right: -7%;
+  bottom: -5%;
+  display: flex;
+  gap: clamp(12px, 1.5vw, 22px);
+  width: min(78vw, 1180px);
+  transform: translateX(2%) scale(1.03);
+  animation: heroLookbookDrift 18s ease-in-out infinite alternate;
 }
 
-.hero-slide:nth-child(2) {
-  animation-delay: 6s;
-}
-
-.hero-slide:nth-child(3) {
-  animation-delay: 12s;
-}
-
-.hero-slide img {
-  width: 100%;
+.hero-lookbook img {
+  flex: 1 1 0;
+  min-width: 0;
   height: 100%;
   object-fit: cover;
-  object-position: center top;
+  box-shadow: 0 24px 70px rgba(23, 21, 20, 0.18);
 }
 
-@keyframes heroSlideShow {
-  0% {
-    opacity: 0;
-    transform: translateY(-50%) translateX(24px) scale(0.98);
+@keyframes heroLookbookDrift {
+  from {
+    transform: translateX(2%) scale(1.03);
   }
 
-  8%,
-  30% {
-    opacity: 1;
-    transform: translateY(-50%) translateX(0) scale(1);
-  }
-
-  38%,
-  100% {
-    opacity: 0;
-    transform: translateY(-50%) translateX(-24px) scale(1.04);
+  to {
+    transform: translateX(-7%) scale(1.07);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-slide {
+  .hero-lookbook {
     animation: none;
-  }
-
-  .hero-slide:first-child {
-    opacity: 1;
-    transform: translateY(-50%);
   }
 }
 
@@ -635,12 +610,10 @@ h2 {
     background: rgba(255, 250, 245, 0.84);
   }
 
-  .hero-slide {
-    right: -18vw;
-    width: min(78vw, 360px);
-    height: 62vh;
-    min-height: 420px;
-    opacity: 0;
+  .hero-lookbook {
+    right: -42%;
+    width: 150vw;
+    opacity: 0.62;
   }
 
   .hero-actions,
@@ -674,12 +647,5 @@ h2 {
   .order-panel {
     align-items: stretch;
     flex-direction: column;
-  }
-}
-
-@media (max-width: 720px) and (prefers-reduced-motion: reduce) {
-  .hero-slide:first-child {
-    opacity: 0.62;
-    transform: translateY(-50%);
   }
 }
